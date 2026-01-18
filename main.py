@@ -161,27 +161,27 @@ def chat_mode():
     print("\n" + "="*60)
     print("VEXA POLISH LLM - CHAT MODE")
     print("="*60 + "\n")
-    
+
     checkpoint_dir = 'data/checkpoints'
     if not os.path.exists(checkpoint_dir) or not os.listdir(checkpoint_dir):
         print("⚠ No trained model. Run first: python main.py train")
         return
-    
+
     config = load_config()
-    
+
     print("Loading tokenizer...")
     tokenizer = VexaTokenizer(vocab_path='data/vocab.json')
-    
+
     print("Loading model...")
     checkpoints = [f for f in os.listdir(checkpoint_dir) if f.endswith('.ant')]
-    latest_checkpoint = sorted(checkpoints, 
+    latest_checkpoint = sorted(checkpoints,
                               key=lambda f: os.path.getmtime(os.path.join(checkpoint_dir, f)))[-1]
-    
+
     graph = AntGraph.load(os.path.join(checkpoint_dir, latest_checkpoint), use_gpu=config.get('use_gpu', False))
-    
+
     engine = VexaEngine(graph=graph, tokenizer=tokenizer, config=config)
     llm = VexaLLM(graph=graph, tokenizer=tokenizer, engine=engine, config=config)
-    
+
     print("\n✓ Model loaded!")
     print("\nSpecial commands:")
     print("  /stats    - Display statistics")
@@ -189,14 +189,14 @@ def chat_mode():
     print("  /feedback <0-1> - Rate last response")
     print("  /save     - Save conversation")
     print("  /quit     - Exit\n")
-    
+
     try:
         while True:
             user_input = input("You: ").strip()
-            
+
             if not user_input:
                 continue
-            
+
             if user_input.startswith('/'):
                 if user_input == '/quit':
                     print("\nGoodbye!")
@@ -221,17 +221,37 @@ def chat_mode():
                 else:
                     print("⚠ Unknown command")
                     continue
-            
+
             print("Vexa: ", end="", flush=True)
             response = llm.chat(user_input)
             print(response)
             print()
-    
+
     except KeyboardInterrupt:
         print("\n\nGoodbye!")
-    
+
     if llm.conversation_history:
         llm.save_conversation('data/last_conversation.json')
+
+
+def web_mode():
+    """Web interface mode."""
+    print("\n" + "="*60)
+    print("VEXA POLISH LLM - WEB INTERFACE")
+    print("="*60 + "\n")
+
+    print("Starting web server...")
+    print("📱 Open http://localhost:8000 in your browser")
+    print("Press Ctrl+C to stop the server\n")
+
+    try:
+        import uvicorn
+        from web_app import app
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    except ImportError:
+        print("⚠ FastAPI/uvicorn not installed. Install with: pip install fastapi uvicorn")
+    except KeyboardInterrupt:
+        print("\n\nWeb server stopped!")
 
 
 def main():
@@ -252,7 +272,7 @@ Usage examples:
     
     parser.add_argument(
         'command',
-        choices=['download', 'prepare', 'train', 'chat', 'all'],
+        choices=['download', 'prepare', 'train', 'chat', 'web', 'all'],
         help='Command to execute'
     )
     
@@ -286,7 +306,10 @@ Usage examples:
     
     elif args.command == 'chat':
         chat_mode()
-    
+
+    elif args.command == 'web':
+        web_mode()
+
     elif args.command == 'all':
         print("\n🚀 Running full pipeline...\n")
         download_data(args.articles)

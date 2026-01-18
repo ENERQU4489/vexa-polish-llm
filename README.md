@@ -160,6 +160,27 @@ You: /feedback 0.8
 ✓ Feedback saved: 0.80
 ```
 
+### Web Interface
+
+```bash
+python main.py web
+```
+
+Launches a web-based chat interface using FastAPI. The interface provides:
+- Real-time chat with the model
+- Conversation history display
+- Model statistics and status
+- Feedback buttons for rating responses
+- Clear conversation option
+
+**Features**:
+- Modern, responsive web UI
+- RESTful API endpoints
+- Automatic model loading
+- Error handling and status indicators
+
+**Access**: Open http://localhost:8000 in your browser after starting the server.
+
 ---
 
 ## 📁 Project Structure
@@ -420,8 +441,8 @@ python main.py download --articles 500
 
 - [x] GPU support (CUDA) - Implemented
 - [x] Word-level tokenization (option) - Implemented
+- [x] Web interface (FastAPI) - Implemented
 - [ ] Multi-threading for training
-- [ ] Web interface (Flask/FastAPI)
 - [ ] Fine-tuning on custom data
 - [ ] Export to ONNX
 - [ ] Evaluation metrics (perplexity, BLEU)
