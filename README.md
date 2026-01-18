@@ -16,7 +16,7 @@ Vexa Polish LLM is an innovative project using **Ant Colony Optimization (ACO)**
 - 📚 **Wikipedia**: Automatic data download from Polish Wikipedia
 - 🔄 **Online Learning**: Model learns during conversations
 - 💾 **Persistence**: Automatic checkpoints and training resumption
-- 🎯 **Char-level**: Character-level tokenization for better inflection handling
+- 🎯 **Tokenization**: Character-level or word-level tokenization options for flexible text processing
 - ⚡ **Performance**: Optimized with NumPy
 - 🎨 **Interactive Chat**: User-friendly conversational interface
 
@@ -183,7 +183,7 @@ vexa-polish-llm/
 │   └── utils/                 # Utilities
 │       ├── cleaner.py         # Text cleaning
 │       ├── sharder.py         # Training data creation
-│       ├── tokenizer.py       # Char-level tokenization
+│       ├── tokenizer.py       # Character/word-level tokenization
 │       └── wiki_downloader.py # Wikipedia download
 ├── main.py                    # Main script
 ├── requirements.txt           # Dependencies
@@ -377,7 +377,7 @@ python main.py download --articles 500
 ### Planned Features
 
 - [x] GPU support (CUDA) - Implemented
-- [ ] Word-level tokenization (option)
+- [x] Word-level tokenization (option) - Implemented
 - [ ] Multi-threading for training
 - [ ] Web interface (Flask/FastAPI)
 - [ ] Fine-tuning on custom data
