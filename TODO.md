@@ -1,5 +1,0 @@
-- [x] Add PyCUDA dependency to requirements.txt
-- [x] Update config/hyperparams.yaml to enable GPU support
-- [x] Modify src/core/graph.py to support CUDA operations with C kernels
-- [x] Update src/core/engine.py to initialize graph with GPU support
-- [x] Test CUDA training functionality
