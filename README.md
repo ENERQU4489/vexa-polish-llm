@@ -190,10 +190,10 @@ vexa-polish-llm/
 ├── config/
 │   └── hyperparams.yaml       # ACO parameters (α, β, ρ, tau_init)
 ├── data/                      # Data (auto-generated)
-│   ├── raw/                   # Raw .txt files from Wikipedia
+│   ├── raw/                   # Raw .txt files from multiple sources
 │   ├── checkpoints/           # Model checkpoints
 │   ├── training_data.bin      # Compressed training data
-│   └── vocab.json             # Character vocabulary
+│   └── vocab.json             # Character/word vocabulary
 ├── src/
 │   ├── core/                  # ACO logic
 │   │   ├── agent.py           # TrainingAnt (ant)
@@ -203,9 +203,13 @@ vexa-polish-llm/
 │   │   └── llm_interface.py   # VexaLLM (generation)
 │   └── utils/                 # Utilities
 │       ├── cleaner.py         # Text cleaning
+│       ├── multi_source_downloader.py # Multi-source data download
 │       ├── sharder.py         # Training data creation
 │       ├── tokenizer.py       # Character/word-level tokenization
 │       └── wiki_downloader.py # Wikipedia download
+├── templates/                 # Web interface templates
+│   └── index.html             # Chat interface
+├── web_app.py                 # FastAPI web application
 ├── main.py                    # Main script
 ├── requirements.txt           # Dependencies
 └── README.md                  # Documentation
@@ -442,6 +446,7 @@ python main.py download --articles 500
 - [x] GPU support (CUDA) - Implemented
 - [x] Word-level tokenization (option) - Implemented
 - [x] Web interface (FastAPI) - Implemented
+- [x] Multi-source training data (60% SpeakLeash News, 30% Wikipedia, 10% OpenSubtitles) - Implemented
 - [ ] Multi-threading for training
 - [ ] Fine-tuning on custom data
 - [ ] Export to ONNX

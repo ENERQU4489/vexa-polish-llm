@@ -25,19 +25,31 @@ def load_config(config_path: str = 'config/hyperparams.yaml') -> dict:
 
 def download_data(num_articles: int = 100):
     """
-    Download data from Wikipedia.
-    
+    Download data from multiple Polish sources with weighted mixing.
+
+    Sources:
+    - 60% SpeakLeash News: Correct Polish with rich inflection
+    - 30% Polish Wikipedia: Hard facts and encyclopedic style
+    - 10% OpenSubtitles: Dialogues and personal forms (I/you)
+
     Args:
         num_articles: Number of articles to download
     """
     print("\n" + "="*60)
-    print("DOWNLOADING DATA FROM WIKIPEDIA")
+    print("DOWNLOADING DATA FROM MULTIPLE POLISH SOURCES")
     print("="*60 + "\n")
-    
-    downloader = WikiDownloader(language='pl', output_dir='data/raw')
-    downloader.download_and_save(count=num_articles, method='random')
-    
-    print("\n✓ Data downloaded successfully!")
+    print("📊 Data composition:")
+    print("  • 60% SpeakLeash News - Correct Polish, rich inflection")
+    print("  • 30% Polish Wikipedia - Hard facts, encyclopedic style")
+    print("  • 10% OpenSubtitles - Dialogues, personal forms (I/you)")
+    print()
+
+    from src.utils.multi_source_downloader import MultiSourceDownloader
+
+    downloader = MultiSourceDownloader(output_dir='data/raw')
+    downloader.download_all_sources(total_articles=num_articles)
+
+    print("\n✓ Multi-source data downloaded successfully!")
 
 
 def prepare_data():
