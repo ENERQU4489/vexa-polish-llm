@@ -1,0 +1,2 @@
+# Ten plik zapewnia, że katalog data/ będzie śledzony przez git
+# Pliki w tym katalogu są ignorowane przez .gitignore

@@ -1,0 +1,8 @@
+Epoka: 0
+Krok globalny: 0
+Sekwencje: 0
+Średnia nagroda: 0.0000
+Najlepsza nagroda: 0.0000
+Średni loss: 0.0000
+Najlepszy loss: inf
+Czas treningu: 0.00s

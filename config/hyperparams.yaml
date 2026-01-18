@@ -1,0 +1,46 @@
+# Vexa Polish LLM - Hyperparameters Configuration
+# Parametry algorytmu ACO (Ant Colony Optimization)
+
+# === ACO Core Parameters ===
+alpha: 1.0              # Wpływ feromonów (τ) na wybór ścieżki
+beta: 2.0               # Wpływ heurystyki (η) na wybór ścieżki
+rho: 0.15               # Współczynnik parowania feromonów (0-1)
+tau_init: 0.1           # Początkowa wartość feromonów
+tau_min: 0.01           # Minimalna wartość feromonów (stabilność)
+tau_max: 10.0           # Maksymalna wartość feromonów (zapobiega dominacji)
+
+# === Training Parameters ===
+num_ants: 50            # Liczba mrówek w każdej epoce
+num_epochs: 1000        # Liczba epok treningowych
+sequence_length: 100    # Długość sekwencji generowanej przez mrówkę
+batch_size: 10          # Liczba sekwencji przed aktualizacją feromonów
+
+# === Online Learning ===
+online_learning: true   # Czy model uczy się podczas rozmowy
+online_update_rate: 0.005 # Siła aktualizacji z interakcji użytkownika (0-1)
+feedback_weight: 1.0    # Waga pozytywnego feedbacku użytkownika
+
+# === Graph Parameters ===
+context_window: 5       # Rozmiar okna kontekstu (n-gram)
+exploration_rate: 0.1   # Prawdopodobieństwo eksploracji (epsilon-greedy)
+
+# === Persistence ===
+checkpoint_interval: 100    # Co ile epok zapisywać checkpoint
+autosave_interval: 300      # Co ile sekund autosave podczas czatu (5 min)
+max_checkpoints: 5          # Maksymalna liczba przechowywanych checkpointów
+
+# === Data Processing ===
+max_sequence_length: 1000   # Maksymalna długość sekwencji treningowej
+min_word_frequency: 2       # Minimalna częstość słowa w korpusie
+vocab_size: 10000           # Maksymalny rozmiar słownika (0 = unlimited)
+
+# === Generation Parameters ===
+temperature: 0.8        # Temperatura generowania (wyższa = bardziej kreatywne)
+max_generation_length: 500  # Maksymalna długość generowanego tekstu
+top_k: 50               # Top-K sampling
+repetition_penalty: 1.2 # Kara za powtórzenia
+
+# === System ===
+random_seed: 42         # Seed dla reprodukowalności
+verbose: true           # Szczegółowe logi
+use_gpu: true           # GPU support (CUDA enabled)

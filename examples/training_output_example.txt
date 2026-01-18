@@ -1,0 +1,79 @@
+============================================================
+PRZYKŁAD WYJŚCIA PODCZAS TRENINGU Z NOWYMI FUNKCJAMI
+============================================================
+
+Przed zmianami:
+---------------
+Epoka 10/1000 | Avg Reward: 0.3245 | Max Reward: 0.8912 | Time: 12.34s
+Epoka 20/1000 | Avg Reward: 0.4123 | Max Reward: 0.9234 | Time: 11.89s
+
+
+Po zmianach:
+------------
+
+============================================================
+Rozpoczęcie treningu - 1000 sekwencji
+============================================================
+
+Epoka 1/1000: 100%|████████████████████| 1000/1000 [00:12<00:00, 81.23seq/s, step=1, loss=0.6755, reward=0.3245]
+
+📊 Epoka 1/1000 - Podsumowanie:
+   Krok globalny: 1
+   Średni Loss: 0.6755 | Najlepszy Loss: 0.1088
+   Średnia Nagroda: 0.3245 | Najlepsza Nagroda: 0.8912
+   Czas epoki: 12.31s
+
+Epoka 2/1000: 100%|████████████████████| 1000/1000 [00:11<00:00, 85.47seq/s, step=2, loss=0.5877, reward=0.4123]
+
+📊 Epoka 2/1000 - Podsumowanie:
+   Krok globalny: 2
+   Średni Loss: 0.5877 | Najlepszy Loss: 0.0766
+   Średnia Nagroda: 0.4123 | Najlepsza Nagroda: 0.9234
+   Czas epoki: 11.70s
+
+Epoka 3/1000: 100%|████████████████████| 1000/1000 [00:11<00:00, 87.12seq/s, step=3, loss=0.5234, reward=0.4766]
+
+📊 Epoka 3/1000 - Podsumowanie:
+   Krok globalny: 3
+   Średni Loss: 0.5234 | Najlepszy Loss: 0.0512
+   Średnia Nagroda: 0.4766 | Najlepsza Nagroda: 0.9488
+   Czas epoki: 11.48s
+
+...
+
+✓ Checkpoint zapisany: checkpoint_epoch_100.pkl
+
+...
+
+============================================================
+✅ Trening zakończony!
+============================================================
+Całkowity czas treningu: 12345.67s (205.76 min)
+Całkowita liczba kroków: 1000
+Najlepsza nagroda: 0.9876
+Najlepszy loss: 0.0124
+============================================================
+
+
+KLUCZOWE ZMIANY:
+================
+
+1. ✅ Progress bar w czasie rzeczywistym
+   - Pokazuje postęp przetwarzania sekwencji
+   - Wyświetla aktualny krok globalny
+   - Pokazuje bieżący loss i reward
+
+2. ✅ Szczegółowe podsumowanie po każdej epoce
+   - Krok globalny (łączna liczba przetworzonych batchy)
+   - Średni i najlepszy loss
+   - Średnia i najlepsza nagroda
+   - Czas trwania epoki
+
+3. ✅ Końcowe statystyki
+   - Całkowita liczba kroków
+   - Najlepsze osiągnięte metryki (reward i loss)
+   - Całkowity czas treningu
+
+4. ✅ Checkpointy zawierają nowe metryki
+   - Zapisywany jest krok globalny
+   - Zapisywane są metryki loss
